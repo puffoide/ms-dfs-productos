@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MsDfsProductosApplication {
+public class ProductosApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MsDfsProductosApplication.class, args);
+		SpringApplication.run(ProductosApplication.class, args);
 	}
 
 }
