@@ -7,6 +7,7 @@ import dfs.s3.ms_dfs_productos.model.Producto;
 import dfs.s3.ms_dfs_productos.service.ProductosService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -20,18 +21,25 @@ public class ProductosController {
     private ProductosService productosService;
 
     @GetMapping("/productos")
-    public List<Producto> getProductos() {
-        return productosService.getListaProductos();
+    public ResponseEntity<List <Producto>> getProductos() {
+        List<Producto> producto = productosService.getListaProductos();
+        return ResponseEntity.ok(producto);
     }
 
     @GetMapping("/seguimiento/{pedido}")
-    public Envio getEnvioByPedido(@PathVariable int pedido) {
-        return productosService.getEnvioByPedido(pedido);
+    public ResponseEntity<Envio> getEnvioByPedido(@PathVariable int pedido) {
+        Envio envio = productosService.getEnvioByPedido(pedido);
+        if(envio == null) {
+            return ResponseEntity.notFound().build();
+        } else
+        
+        return ResponseEntity.ok(envio);
     }
 
     @GetMapping("/pendientes")
-    public List<Envio> getProductosPendientes() {
-        return productosService.getProductosPendientes();
+    public ResponseEntity<List<Envio>> getProductosPendientes() {
+        List <Envio> envio = productosService.getProductosPendientes();
+        return ResponseEntity.ok(envio);
     }
 
 }
