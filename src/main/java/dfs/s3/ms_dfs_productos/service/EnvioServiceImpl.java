@@ -1,5 +1,6 @@
 package dfs.s3.ms_dfs_productos.service;
 
+import dfs.s3.ms_dfs_productos.controller.ProductosNotFoundException;
 import dfs.s3.ms_dfs_productos.model.Envio;
 import dfs.s3.ms_dfs_productos.repository.EnvioRepository;
 
@@ -7,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,37 +21,46 @@ public class EnvioServiceImpl implements EnvioService {
 
     @Override
     public List<Envio> getAllEnvios() {
+        log.info("Obteniendo todos los envíos.");
         return envioRepository.findAll();
     }
 
     @Override
     public Envio createEnvio(Envio envio) {
+        log.info("Creando envío.");
         return envioRepository.save(envio);
     }
 
     @Override
     public Envio getEnvioById(Long id) {
-        return envioRepository.findById(id).orElse(null);
+        log.info("Buscando envío con ID {}", id);
+        return envioRepository.findById(id)
+                .orElseThrow(() -> new ProductosNotFoundException("Envío " + id + " no encontrado"));
     }
 
     @Override
     public Envio updateEnvio(Long id, Envio envioDetails) {
+        log.info("Actualizando envío con ID {}", id);
         return envioRepository.findById(id).map(envio -> {
             envio.setEstado(envioDetails.getEstado());
             envio.setUbicacion(envioDetails.getUbicacion());
             envio.setDistribuidor(envioDetails.getDistribuidor());
             envio.setCodSeguimiento(envioDetails.getCodSeguimiento());
             return envioRepository.save(envio);
-        }).orElse(null);
+        }).orElseThrow(() -> new ProductosNotFoundException("Fallo al modificar id: el envío " + id + " no existe"));
     }
 
     @Override
     public void deleteEnvio(Long id) {
-        envioRepository.deleteById(id);
+        log.info("Eliminando envío con ID {}", id);
+        Envio envio = envioRepository.findById(id)
+                .orElseThrow(() -> new ProductosNotFoundException("No se logra eliminar id: el envío " + id + " no existe"));
+        envioRepository.delete(envio);
     }
 
     @Override
     public List<Envio> getEnviosPendientes() {
+        log.info("Obteniendo envíos pendientes.");
         return envioRepository.findAll().stream()
                 .filter(envio -> "Pendiente".equals(envio.getEstado()))
                 .toList();

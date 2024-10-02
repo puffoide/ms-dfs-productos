@@ -3,6 +3,7 @@ package dfs.s3.ms_dfs_productos.model;
 import org.springframework.hateoas.RepresentationModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -23,6 +24,8 @@ public class Envio extends RepresentationModel<Envio> {
     private String distribuidor;
 
     @Column(name = "estado")
+    @NotNull(message = "El estado no puede estar vacío")
+    @Pattern(regexp = "Pendiente|En tránsito|Entregado", message = "Estado debe ser 'Pendiente', 'En tránsito' o 'Entregado'")
     private String estado;
 
     @Column(name = "producto_nombre")
@@ -31,6 +34,7 @@ public class Envio extends RepresentationModel<Envio> {
     private String producto_nombre;
 
     @Column(name = "ubicacion")
+    @Size(min = 1, max = 100, message = "La ubicación debe tener entre 1 y 100 caracteres")
     private String ubicacion;
 
 
