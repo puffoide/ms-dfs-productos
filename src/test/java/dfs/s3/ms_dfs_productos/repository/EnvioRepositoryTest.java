@@ -17,12 +17,16 @@ public class EnvioRepositoryTest {
     @Test
     public void testSaveEnvio() {
         Envio envio = new Envio();
-        envio.setCodSeguimiento("ABC123");
+        envio.setCodSeguimiento("11111111");
         envio.setProductoNombre("Producto de prueba");
+        envio.setEstado("Pendiente");
 
         Envio savedEnvio = envioRepository.save(envio);
-
+ 
+ 
         assertNotNull(savedEnvio.getId());
-        assertEquals("ABC123", savedEnvio.getCodSeguimiento());
+        assertEquals("11111111", savedEnvio.getCodSeguimiento());
     }
+
+    
 }

@@ -9,7 +9,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+
+import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 public class EnvioServiceTest {
@@ -32,4 +35,24 @@ public class EnvioServiceTest {
         assertEquals("XYZ789", result.getCodSeguimiento());
         verify(envioRepository, times(1)).save(envio);
     }
+
+    @Test
+    public void testUpdateEnvio() {
+        Envio existingEnvio = new Envio();
+        existingEnvio.setId(1L);
+        existingEnvio.setCodSeguimiento("4534245");
+        existingEnvio.setEstado("Pendiente");
+
+        Envio updatedEnvio = new Envio();
+        updatedEnvio.setEstado("Despachado");
+
+        when(envioRepository.findById(1L)).thenReturn(Optional.of(existingEnvio));
+        when(envioRepository.save(any(Envio.class))).thenReturn(updatedEnvio);
+
+        Envio result = envioService.updateEnvio(1L, updatedEnvio);
+
+        assertEquals("Despachado", result.getEstado());
+        verify(envioRepository, times(1)).save(updatedEnvio);
+    }
+
 }

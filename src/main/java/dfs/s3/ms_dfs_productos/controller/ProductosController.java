@@ -84,7 +84,7 @@ public class ProductosController {
 
     // Actualizar un envío 
     @PutMapping("/{id}")
-    public EntityModel<Envio> updateEnvio(@PathVariable Long id, @RequestBody Envio envioDetails) {
+    public EntityModel<Envio> updateEnvio(@PathVariable Long id, @Validated @RequestBody Envio envioDetails) {
         log.info("PUT /envios/" + id);
         Envio updatedEnvio = envioService.updateEnvio(id, envioDetails);
         return EntityModel.of(updatedEnvio,
