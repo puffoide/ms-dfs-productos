@@ -1,0 +1,8 @@
+dfs\s3\ms_dfs_productos\repository\EnvioRepository.class
+dfs\s3\ms_dfs_productos\service\EnvioService.class
+dfs\s3\ms_dfs_productos\model\Envio.class
+dfs\s3\ms_dfs_productos\controller\ProductosNotFoundException.class
+dfs\s3\ms_dfs_productos\service\EnvioServiceImpl.class
+dfs\s3\ms_dfs_productos\controller\ProductosController$EnvioNotFoundException.class
+dfs\s3\ms_dfs_productos\controller\ProductosController.class
+dfs\s3\ms_dfs_productos\ProductosApplication.class

@@ -1,0 +1,4 @@
+dfs\s3\ms_dfs_productos\ProductosApplicationTests.class
+dfs\s3\ms_dfs_productos\service\EnvioServiceTest.class
+dfs\s3\ms_dfs_productos\controller\ProductosControllerTest.class
+dfs\s3\ms_dfs_productos\repository\EnvioRepositoryTest.class
