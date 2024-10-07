@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: dfs.s3.ms_dfs_productos.ProductosApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.278 s -- in dfs.s3.ms_dfs_productos.ProductosApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.877 s -- in dfs.s3.ms_dfs_productos.ProductosApplicationTests

@@ -18,7 +18,6 @@ public class Envio extends RepresentationModel<Envio> {
     @Column(name = "cod_seguimiento")
     @NotNull(message = "El código de seguimiento no puede estar vacío")
     @Size(min = 1, message = "El código de seguimiento debe tener al menos un carácter")
-    // @Pattern(regexp = "\\d+", message = "El código de seguimiento solo puede contener números")
     private String cod_seguimiento;
 
     @Column(name = "distribuidor")
